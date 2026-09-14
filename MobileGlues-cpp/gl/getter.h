@@ -5,6 +5,9 @@
 // SPDX-License-Identifier: LGPL-2.1-only
 // End of Source File Header
 
+#ifndef MOBILEGLUES_GETTER_H
+#define MOBILEGLUES_GETTER_H
+
 #include "../includes.h"
 #include <GL/gl.h>
 #include "glcorearb.h"
@@ -14,24 +17,24 @@
 #include "mg.h"
 #include "../version.h"
 
-#ifndef MOBILEGLUES_GETTER_H
-#define MOBILEGLUES_GETTER_H
-
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-    GLAPI GLAPIENTRY const GLubyte* glGetString(GLenum name);
-    GLAPI GLAPIENTRY const GLubyte* glGetStringi(GLenum name, GLuint index);
-    GLAPI GLAPIENTRY GLenum glGetError();
-    GLAPI GLAPIENTRY void glGetIntegerv(GLenum pname, GLint* params);
-    GLAPI GLAPIENTRY void glGetQueryObjectiv(GLuint id, GLenum pname, GLint* params);
-    GLAPI GLAPIENTRY void glGetQueryObjecti64v(GLuint id, GLenum pname, GLint64* params);
+GLAPI GLAPIENTRY const GLubyte* glGetString(GLenum name);
+GLAPI GLAPIENTRY const GLubyte* glGetStringi(GLenum name, GLuint index);
+GLAPI GLAPIENTRY GLenum glGetError();
+GLAPI GLAPIENTRY void glGetIntegerv(GLenum pname, GLint* params);
+GLAPI GLAPIENTRY void glGetQueryObjectiv(GLuint id, GLenum pname, GLint* params);
+GLAPI GLAPIENTRY void glGetQueryObjecti64v(GLuint id, GLenum pname, GLint64* params);
 
-    void AppendExtension(const char* ext);
-    void InitGLESBaseExtensions();
-    void set_es_version();
+void AppendExtension(const char* ext);
+void InitGLESBaseExtensions();
+void set_es_version();
+
+void mg_set_mc1122_compat_profile(int enabled);
+int mg_get_mc1122_compat_profile();
 
 #ifdef __cplusplus
 }
@@ -39,4 +42,4 @@ extern "C"
 
 extern Version GLVersion;
 
-#endif // MOBILEGLUES_GETTER_H
+#endif
