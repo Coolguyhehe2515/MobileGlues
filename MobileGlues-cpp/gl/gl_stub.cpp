@@ -24,7 +24,11 @@ STUB_FUNCTION_HEAD(void, glClearIndex, GLfloat c ) STUB_FUNCTION_END_NO_RETURN(v
 STUB_FUNCTION_HEAD(void, glIndexMask, GLuint mask ) STUB_FUNCTION_END_NO_RETURN(void, glIndexMask,mask)
 STUB_FUNCTION_HEAD(void, glAlphaFunc, GLenum func, GLclampf ref ) STUB_FUNCTION_END_NO_RETURN(void, glAlphaFunc,func,ref)
 STUB_FUNCTION_HEAD(void, glLogicOp, GLenum opcode ) STUB_FUNCTION_END_NO_RETURN(void, glLogicOp,opcode)
-STUB_FUNCTION_HEAD(void, glPointSize, GLfloat size ) STUB_FUNCTION_END_NO_RETURN(void, glPointSize,size)
+extern "C" GLAPI GLAPIENTRY void glPointSize(GLfloat size) {
+    if (GLES.glPointSize != NULL) {
+        GLES.glPointSize(size);
+    }
+}
 STUB_FUNCTION_HEAD(void, glLineStipple, GLint factor, GLushort pattern ) STUB_FUNCTION_END_NO_RETURN(void, glLineStipple,factor,pattern)
 STUB_FUNCTION_HEAD(void, glPolygonMode, GLenum face, GLenum mode ) STUB_FUNCTION_END_NO_RETURN(void, glPolygonMode,face,mode)
 STUB_FUNCTION_HEAD(void, glPolygonStipple, const GLubyte *mask ) STUB_FUNCTION_END_NO_RETURN(void, glPolygonStipple,mask)
@@ -49,7 +53,11 @@ STUB_FUNCTION_HEAD(GLint, glRenderMode, GLenum mode) STUB_FUNCTION_END(GLint, gl
 * Depth Buffer
 */
 
-STUB_FUNCTION_HEAD(void, glDepthRange, GLclampd near_val, GLclampd far_val ) STUB_FUNCTION_END_NO_RETURN(void, glDepthRange, near_val, far_val)
+extern "C" GLAPI GLAPIENTRY void glDepthRange(GLclampd near_val, GLclampd far_val) {
+    if (GLES.glDepthRangef != NULL) {
+        GLES.glDepthRangef((GLfloat)near_val, (GLfloat)far_val);
+    }
+}
 /*
 * Accumulation Buffer
 */
